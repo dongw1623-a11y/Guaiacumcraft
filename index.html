@@ -1,821 +1,1596 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>燃造物 · 愈创木手串</title>
+  <title>燃造物 · 愈创木手艺 | Guaiacum Craft | グアイアクム工芸</title>
+  <meta name="description" content="探索愈创木手串的文化深义与手工艺之美 | Explore the cultural depth and craftsmanship of Guaiacum bracelets | グアイアクムブレスレットの文化的意義と職人技を探る" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Serif+JP:wght@400;600;700&family=Cinzel:wght@400;600&family=IM+Fell+English+SC&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --gold-dim: #8a6f30;
+      --black: #0d0d0d;
+      --black-card: #141414;
+      --black-deep: #080808;
+      --text-main: #e8dcc8;
+      --text-muted: #9e8e72;
+      --text-dim: #5a4f3e;
+      --border: rgba(201, 168, 76, 0.18);
+      --border-hover: rgba(201, 168, 76, 0.55);
+      --shadow-gold: 0 0 28px rgba(201, 168, 76, 0.12);
+      --shadow-deep: 0 8px 40px rgba(0,0,0,0.7);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black-deep);
+      color: var(--text-main);
+      font-family: 'Noto Serif SC', 'Noto Serif JP', Georgia, serif;
+      line-height: 1.85;
+      overflow-x: hidden;
+    }
+
+    /* ======== LANG SWITCHER ======== */
+    .lang-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(8,8,8,0.96);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 8px 32px;
+      gap: 6px;
+      backdrop-filter: blur(12px);
+    }
+
+    .lang-bar .lang-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-right: 8px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 4px 14px;
+      border-radius: 2px;
+      font-size: 12px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      font-family: 'Cinzel', serif;
+      transition: all 0.25s ease;
+    }
+    .lang-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+    .lang-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--black);
+      font-weight: 700;
+    }
+
+    /* ======== NAV ======== */
+    nav {
+      position: fixed;
+      top: 41px;
+      left: 0;
+      right: 0;
+      z-index: 9998;
+      background: rgba(8,8,8,0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 40px;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      font-family: 'Cinzel', serif;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    /* ======== HERO ======== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 40%, rgba(201,168,76,0.07) 0%, transparent 70%),
+        linear-gradient(180deg, #0a0804 0%, #080808 100%);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201,168,76,0.025) 60px, rgba(201,168,76,0.025) 61px),
+        repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201,168,76,0.025) 60px, rgba(201,168,76,0.025) 61px);
+      pointer-events: none;
+    }
+
+    .hero-brand {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 8px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-symbol {
+      font-size: 52px;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: block;
+      filter: drop-shadow(0 0 18px rgba(201,168,76,0.4));
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: drop-shadow(0 0 18px rgba(201,168,76,0.4)); }
+      50% { filter: drop-shadow(0 0 34px rgba(201,168,76,0.7)); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      color: var(--gold-light);
+      font-family: 'Cinzel', serif;
+      letter-spacing: 4px;
+      margin-bottom: 16px;
+      text-shadow: 0 2px 20px rgba(201,168,76,0.3);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--text-main);
+      margin-bottom: 12px;
+      font-weight: 400;
+    }
+
+    .hero-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+      max-width: 560px;
+    }
+
+    .hero-divider {
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 48px;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 14px 40px;
+      text-decoration: none;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      transition: all 0.3s ease;
+    }
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* ======== SECTION WRAPPER ======== */
+    section {
+      padding: 90px 0;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--gold-light);
+      text-align: center;
+      margin-bottom: 12px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 2px;
+    }
+
+    .section-desc {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 600px;
+      margin: 0 auto 56px;
+      letter-spacing: 0.5px;
+    }
+
+    .gold-line {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 18px auto 40px;
+    }
+
+    /* ======== KNOWLEDGE CARDS ======== */
+    .knowledge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+    }
+
+    .k-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      padding: 36px 32px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .k-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold);
+      transition: height 0.4s ease;
+    }
+
+    .k-card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-gold);
+      transform: translateY(-3px);
+    }
+    .k-card:hover::before { height: 100%; }
+
+    .k-card-icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .k-card-title {
+      font-size: 16px;
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      letter-spacing: 1px;
+      font-family: 'Cinzel', serif;
+    }
+
+    .k-card-body {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.9;
+    }
+
+    /* ======== TRENDING SECTION ======== */
+    .trending-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .trend-item {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      padding: 28px 30px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      transition: all 0.3s ease;
+    }
+
+    .trend-item:hover {
+      border-color: var(--gold-dim);
+      box-shadow: 0 0 20px rgba(201,168,76,0.08);
+    }
+
+    .trend-num {
+      font-family: 'Cinzel', serif;
+      font-size: 28px;
+      color: var(--gold-dim);
+      line-height: 1;
+      min-width: 36px;
+      font-weight: 600;
+    }
+
+    .trend-content h3 {
+      font-size: 15px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .trend-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+
+    .trend-tag {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 10px;
+      border: 1px solid var(--gold-dim);
+      color: var(--gold-dim);
+      letter-spacing: 1.5px;
+      font-family: 'Cinzel', serif;
+      margin-bottom: 10px;
+    }
+
+    /* ======== COMPARE TABLE ======== */
+    .compare-wrapper {
+      overflow-x: auto;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .compare-table th {
+      background: rgba(201,168,76,0.12);
+      color: var(--gold-light);
+      padding: 16px 20px;
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(201,168,76,0.07);
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .compare-table tr:hover td {
+      background: rgba(201,168,76,0.04);
+      color: var(--text-main);
+    }
+
+    .highlight-cell {
+      color: var(--gold-light) !important;
+      font-weight: 600;
+    }
+
+    /* ======== GALLERY GRID ======== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 0 30px rgba(201,168,76,0.15);
+      transform: scale(1.02);
+    }
+
+    .gallery-img {
+      width: 100%;
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 64px;
+      background: linear-gradient(135deg, #0f0e0b, #1a1507);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(8,8,8,0.8));
+    }
+
+    .gallery-caption {
+      padding: 18px 20px;
+    }
+
+    .gallery-caption h3 {
+      font-size: 14px;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .gallery-caption p {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ======== HEALING SECTION ======== */
+    .healing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .healing-card {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      padding: 30px 24px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .healing-card:hover {
+      border-color: var(--gold-dim);
+      box-shadow: var(--shadow-gold);
+    }
+
+    .healing-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .healing-title {
+      font-size: 15px;
+      color: var(--gold-light);
+      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
+      letter-spacing: 1px;
+    }
+
+    .healing-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.85;
+    }
+
+    /* ======== QUOTE SECTION ======== */
+    .quote-section {
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 50%, rgba(201,168,76,0.06) 0%, transparent 65%),
+        var(--black-card);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 40px;
+      text-align: center;
+      margin: 0;
+      max-width: unset;
+    }
+
+    .quote-text {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--text-main);
+      font-style: italic;
+      max-width: 740px;
+      margin: 0 auto 24px;
+      line-height: 1.9;
+      letter-spacing: 0.5px;
+    }
+
+    .quote-author {
+      font-family: 'Cinzel', serif;
+      font-size: 12px;
+      letter-spacing: 4px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+    }
+
+    /* ======== GUESTBOOK ======== */
+    .guestbook-form {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      padding: 40px;
+      max-width: 680px;
+      margin: 0 auto 40px;
+    }
+
+    .form-group {
+      margin-bottom: 22px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      font-family: 'Cinzel', serif;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 12px 16px;
+      font-size: 14px;
+      font-family: 'Noto Serif SC', Georgia, serif;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+
+    .form-group textarea { height: 120px; resize: vertical; }
+    .form-group select option { background: #1a1507; }
+
+    .form-submit {
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold-light);
+      padding: 13px 40px;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      width: 100%;
+    }
+
+    .form-submit:hover { background: var(--gold); color: var(--black); }
+
+    .comment-list { max-width: 680px; margin: 0 auto; }
+
+    .comment-item {
+      background: var(--black-card);
+      border: 1px solid var(--border);
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      transition: border-color 0.25s;
+    }
+
+    .comment-item:hover { border-color: var(--gold-dim); }
+
+    .comment-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    .comment-name { color: var(--gold-dim); font-family: 'Cinzel', serif; }
+
+    .comment-text { font-size: 14px; color: var(--text-muted); }
+
+    /* ======== FOOTER ======== */
+    footer {
+      background: var(--black);
+      border-top: 1px solid var(--border);
+      padding: 60px 40px 30px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      color: var(--gold);
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      color: var(--text-dim);
+      letter-spacing: 2px;
+      margin-bottom: 32px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      font-family: 'Cinzel', serif;
+      transition: color 0.25s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    /* ======== DECORATIVE BAND ======== */
+    .tibetan-band {
+      width: 100%;
+      height: 40px;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(201,168,76,0.12) 0px,
+        rgba(201,168,76,0.12) 4px,
+        transparent 4px,
+        transparent 20px
+      );
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tibetan-band::after {
+      content: '❧ ✦ 燃 ✦ 造 ✦ 物 ✦ GUAIACUM ✦ CRAFT ✦ グアイアクム ✦ ❧';
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--gold-dim);
+      letter-spacing: 3px;
+      font-family: 'Cinzel', serif;
+      white-space: nowrap;
+    }
+
+    /* ======== RESPONSIVE ======== */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      section { padding: 60px 20px; }
+      .guestbook-form { padding: 24px 20px; }
+      .hero { padding: 140px 24px 60px; }
+    }
+
+    /* ======== MULTILANG VISIBILITY ======== */
+    [data-lang] { display: none !important; }
+    body.lang-zh [data-lang="zh"] { display: revert !important; }
+    body.lang-en [data-lang="en"] { display: revert !important; }
+    body.lang-ja [data-lang="ja"] { display: revert !important; }
+
+    /* for inline spans */
+    span[data-lang], a[data-lang] { display: none !important; }
+    body.lang-zh span[data-lang="zh"],
+    body.lang-zh a[data-lang="zh"] { display: inline !important; }
+    body.lang-en span[data-lang="en"],
+    body.lang-en a[data-lang="en"] { display: inline !important; }
+    body.lang-ja span[data-lang="ja"],
+    body.lang-ja a[data-lang="ja"] { display: inline !important; }
+
+    /* nav links spans */
+    .nav-links a { position: relative; }
+  </style>
 </head>
-<body>
+<body class="lang-zh">
 
-<!-- ========== NAV ========== -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <div class="nav-logo">
-      <span class="logo-mark">燃</span>
-      <span class="logo-text">燃造物</span>
-    </div>
+  <!-- LANGUAGE BAR -->
+  <div class="lang-bar">
+    <span class="lang-label">Lang</span>
+    <button class="lang-btn active" onclick="setLang('zh')">中文</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ja')">日本語</button>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">燃造物</a>
     <ul class="nav-links">
-      <li><a href="#about">关于木材</a></li>
-      <li><a href="#science">木性科普</a></li>
-      <li><a href="#compare">对比鉴别</a></li>
-      <li><a href="#gallery">珠串展示</a></li>
-      <li><a href="#faq">盘玩养护</a></li>
-      <li><a href="#message">留言</a></li>
+      <li><a href="#knowledge">
+        <span data-lang="zh">科普</span>
+        <span data-lang="en">Know</span>
+        <span data-lang="ja">知識</span>
+      </a></li>
+      <li><a href="#trending">
+        <span data-lang="zh">流行</span>
+        <span data-lang="en">Trending</span>
+        <span data-lang="ja">トレンド</span>
+      </a></li>
+      <li><a href="#healing">
+        <span data-lang="zh">疗愈</span>
+        <span data-lang="en">Healing</span>
+        <span data-lang="ja">癒し</span>
+      </a></li>
+      <li><a href="#compare">
+        <span data-lang="zh">对比</span>
+        <span data-lang="en">Compare</span>
+        <span data-lang="ja">比較</span>
+      </a></li>
+      <li><a href="#gallery">
+        <span data-lang="zh">展示</span>
+        <span data-lang="en">Gallery</span>
+        <span data-lang="ja">展示</span>
+      </a></li>
+      <li><a href="#guestbook">
+        <span data-lang="zh">留言</span>
+        <span data-lang="en">Guestbook</span>
+        <span data-lang="ja">芳名帳</span>
+      </a></li>
     </ul>
-    <div class="nav-toggle" id="navToggle">
-      <span></span><span></span><span></span>
-    </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- ========== HERO ========== -->
-<section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="mandala mandala-1"></div>
-    <div class="mandala mandala-2"></div>
-    <div class="grain-overlay"></div>
-  </div>
-  <div class="hero-content">
-    <p class="hero-eyebrow">源自生命之树的馈赠</p>
-    <h1 class="hero-title">
-      <span class="title-cn">愈创木</span>
-      <span class="title-divider">·</span>
-      <span class="title-sub">GUAIACUM</span>
-    </h1>
-    <p class="hero-desc">
-      密度胜过铁，香气赛过沉<br/>
-      一串缠腕，是时间沉淀的温度，也是岁月返璞的低语
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-brand">Guaiacum Craft · 燃造物 · グアイアクム工芸</div>
+    <span class="hero-symbol">☸</span>
+
+    <h1 class="hero-title">GUAIACUM CRAFT</h1>
+
+    <p class="hero-subtitle">
+      <span data-lang="zh">愈创木 · 手作佛珠 · 文创传承</span>
+      <span data-lang="en">Sacred Wood · Handcrafted Beads · Living Heritage</span>
+      <span data-lang="ja">聖なる木 · 手作り念珠 · 文化の伝承</span>
     </p>
-    <div class="hero-cta">
-      <a href="#science" class="btn-primary">探寻木性</a>
-      <a href="#gallery" class="btn-ghost">珠串展示</a>
-    </div>
+
+    <div class="hero-divider"></div>
+
+    <p class="hero-tagline">
+      <span data-lang="zh">每一颗珠，皆有灵魂。每一串，皆承一段故事。</span>
+      <span data-lang="en">Every bead holds a soul. Every strand carries a story.</span>
+      <span data-lang="ja">一粒一粒に魂が宿り、一本の連には物語が刻まれる。</span>
+    </p>
+
+    <a class="hero-cta" href="#knowledge">
+      <span data-lang="zh">探索愈创木</span>
+      <span data-lang="en">Explore Guaiacum</span>
+      <span data-lang="ja">探索する</span>
+    </a>
   </div>
-  <div class="hero-scroll-hint">
-    <span>向下探索</span>
-    <div class="scroll-line"></div>
+
+  <!-- TIBETAN BAND -->
+  <div class="tibetan-band"></div>
+
+  <!-- KNOWLEDGE SECTION -->
+  <section id="knowledge">
+    <div class="section-label">Science & Culture</div>
+    <h2 class="section-title">
+      <span data-lang="zh">认识愈创木</span>
+      <span data-lang="en">About Guaiacum</span>
+      <span data-lang="ja">グアイアクムとは</span>
+    </h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">
+      <span data-lang="zh">来自加勒比海的神木，世界最密重的木材之一，自古被视为自然界的医者。</span>
+      <span data-lang="en">A sacred tree from the Caribbean — one of the world's densest woods, revered as a healer since antiquity.</span>
+      <span data-lang="ja">カリブ海原産の神木。世界最硬の木材の一つとして、古代から自然の癒し手として崇められてきた。</span>
+    </p>
+    <div class="knowledge-grid">
+
+      <div class="k-card">
+        <span class="k-card-icon">🌿</span>
+        <div class="k-card-title">
+          <span data-lang="zh">植物学身份</span>
+          <span data-lang="en">Botanical Identity</span>
+          <span data-lang="ja">植物学的特徴</span>
+        </div>
+        <div class="k-card-body">
+          <span data-lang="zh">愈创木（Guaiacum officinale），又名生命之树（Lignum Vitae），属苦木科，原产于加勒比海及中美洲热带地区。树体低矮、生长极为缓慢，百年树龄方能成材，因此极为珍贵。其木材密度超过水，放入水中会沉入底部，堪称世界上最重的商业木材之一。蓝紫色花朵小巧而精致，是牙买加的国花。</span>
+          <span data-lang="en">Guaiacum officinale, known as Lignum Vitae ("Tree of Life"), belongs to the family Zygophyllaceae. Native to the Caribbean and Central America, it grows extremely slowly — a century may pass before it becomes harvestable timber. So dense it sinks in water, it's among the world's heaviest commercial woods. Its delicate blue-purple flowers serve as Jamaica's national flower.</span>
+          <span data-lang="ja">愈創木（Guaiacum officinale）、「生命の木（Lignum Vitae）」とも呼ばれるこの植物は、カリブ海と中央アメリカ原産。生長は極めて遅く、材木になるまで百年を要することもある。木材密度は水より高く、沈むほど重い。青紫色の可憐な花は、ジャマイカの国花となっている。</span>
+        </div>
+      </div>
+
+      <div class="k-card">
+        <span class="k-card-icon">🏺</span>
+        <div class="k-card-title">
+          <span data-lang="zh">历史与文化</span>
+          <span data-lang="en">History & Culture</span>
+          <span data-lang="ja">歴史と文化</span>
+        </div>
+        <div class="k-card-body">
+          <span data-lang="zh">16世纪，西班牙殖民者将愈创木带回欧洲，声称其树脂能治梅毒，一时成为欧洲皇室与贵族争抢的"新大陆圣药"。印第安原住民部落更早已将其视为神圣植物，用于治疗风湿、净化血液与祭祀仪式。在佛教文化圈中，愈创木因其密实沉稳的特质，被赋予"定力""守护"的象征意涵，是制作佛珠的上佳材料。</span>
+          <span data-lang="en">In the 16th century, Spanish colonizers brought Guaiacum to Europe, claiming its resin cured syphilis — it became the coveted "New World miracle medicine" among European royalty. Indigenous peoples had long regarded it as sacred, using it for treating rheumatism, purifying blood, and ritual ceremonies. In Buddhist traditions, its dense and grounding nature symbolizes steadiness and protection, making it an ideal material for prayer beads.</span>
+          <span data-lang="ja">16世紀、スペインの植民者たちがグアイアクムをヨーロッパに持ち帰り、その樹脂が梅毒を治すとして欧州王室の間で「新大陸の霊薬」と重宝された。先住民族はそれ以前から、リウマチの治療・血液の浄化・祭儀において神聖視してきた。仏教文化圏では、その密度感と安定感が「禅定」「守護」の象徴とされ、念珠に最適な素材として重んじられている。</span>
+        </div>
+      </div>
+
+      <div class="k-card">
+        <span class="k-card-icon">⚗️</span>
+        <div class="k-card-title">
+          <span data-lang="zh">物性与特征</span>
+          <span data-lang="en">Properties & Features</span>
+          <span data-lang="ja">物性と特徴</span>
+        </div>
+        <div class="k-card-body">
+          <span data-lang="zh">愈创木含丰富的愈创木脂（guaiacol），具有天然的抗氧化、抗炎与防腐特性。木材本身自含天然油脂，无需额外处理即能防潮耐腐，且越盘越润。其独特的交错纹理使得木珠触感细腻、温润如玉，是沉香、檀香之外东南亚收藏界最受追捧的佛珠用材之一。长期佩戴者反映，手串会随体温逐渐散发出淡淡木质香气。</span>
+          <span data-lang="en">Guaiacum wood is rich in guaiacol — a natural compound with antioxidant, anti-inflammatory, and antimicrobial properties. The wood is naturally self-oiling, requiring no treatment to resist moisture and decay. It develops a beautiful patina with use. Its interlocking grain gives beads a silky, jade-like touch — making it one of the most sought-after bracelet materials in Southeast Asian collector circles alongside agarwood and sandalwood. Long-time wearers note a subtle woody fragrance that emerges with body warmth.</span>
+          <span data-lang="ja">愈創木にはグアイアコール（guaiacol）が豊富に含まれており、天然の抗酸化・抗炎症・防腐効果を持つ。木材は自ら油脂を含むため、特別な処理なしに防湿・防腐が可能。使い込むほどに艶が増す。交錯した木目が珠に絹のような玉石感を生み出し、沈香・白檀に次ぐ東南アジアコレクター界で最も人気の念珠素材の一つ。長期装着者によると、体温によって微かな木の香りが漂うとのこと。</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TRENDING ON GOOGLE SECTION -->
+  <div class="tibetan-band"></div>
+  <section id="trending" style="background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 60%); max-width: unset; padding-left: 0; padding-right: 0;">
+    <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px;">
+    <div class="section-label">Google Trending</div>
+    <h2 class="section-title">
+      <span data-lang="zh">全球流行话题</span>
+      <span data-lang="en">Trending Topics Worldwide</span>
+      <span data-lang="ja">グローバルトレンド</span>
+    </h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">
+      <span data-lang="zh">这些是当前在Google上关于愈创木最受关注的话题，我们为您深度解读。</span>
+      <span data-lang="en">These are the most-searched Guaiacum topics on Google right now — curated and interpreted for you.</span>
+      <span data-lang="ja">現在Googleで最も検索されているグアイアクム関連のトピックを、厳選してご紹介します。</span>
+    </p>
+
+    <div class="trending-list">
+
+      <div class="trend-item">
+        <div class="trend-num">01</div>
+        <div class="trend-content">
+          <span class="trend-tag">HEALING</span>
+          <h3>
+            <span data-lang="zh">愈创木抗风湿的传统疗法</span>
+            <span data-lang="en">Guaiacum as an Antirheumatic Herb</span>
+            <span data-lang="ja">抗リウマチ薬草としての愈創木</span>
+          </h3>
+          <p>
+            <span data-lang="zh">海外草药研究者最近集中关注愈创木树脂（guaiacol）对风湿性关节炎、痛风的缓解功效。加勒比传统医学将其树皮熬成膏药，用于关节止痛和淋巴净化。西方现代草药学也将其列为"排毒净血"草药之一。</span>
+            <span data-lang="en">Western herbalists are focusing on Guaiacum's anti-inflammatory resin (guaiacol) for relieving rheumatoid arthritis and gout. Caribbean traditional medicine uses its bark decoctions for joint pain and lymphatic cleansing. It's now appearing in mainstream herbal supplement circles.</span>
+            <span data-lang="ja">西洋ハーブ研究者は、グアイアクムの抗炎症性樹脂（グアイアコール）がリウマチや痛風に効果的であることに注目。カリブ海の伝統医学では樹皮の煎じ薬が関節痛や解毒に使用されており、現代のサプリメント市場でも注目が高まっている。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">02</div>
+        <div class="trend-content">
+          <span class="trend-tag">SPIRITUAL</span>
+          <h3>
+            <span data-lang="zh">木质手串与灵性佩戴文化</span>
+            <span data-lang="en">Wood Bracelets & Spiritual Wearing Culture</span>
+            <span data-lang="ja">木製ブレスレットとスピリチュアル文化</span>
+          </h3>
+          <p>
+            <span data-lang="zh">在Google搜索中，"spiritual wood bracelet meaning"一词热度持续攀升。愈创木手串因其"大地能量"和"定心守护"的特质，在欧美冥想社群中备受追捧，被誉为"最能接地气的手串材料"。</span>
+            <span data-lang="en">"Spiritual wood bracelet meaning" continues to trend on Google. Guaiacum bracelets are celebrated in Western meditation communities for their "grounding earth energy" — earning the reputation as "the most grounding bracelet material." Sales have surged in the mindfulness and wellness market.</span>
+            <span data-lang="ja">Googleで「スピリチュアル ウッドブレスレット 意味」の検索が急増中。愈創木ブレスレットは欧米のメディテーションコミュニティで「アースエネルギー」「心を定める護符」として絶賛され、マインドフルネス市場での需要が急拡大している。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">03</div>
+        <div class="trend-content">
+          <span class="trend-tag">CRAFT</span>
+          <h3>
+            <span data-lang="zh">Lignum Vitae：世界最硬木材的手工艺</span>
+            <span data-lang="en">Lignum Vitae: Crafting the World's Hardest Wood</span>
+            <span data-lang="ja">リグナムバイタ：世界最硬材の職人技</span>
+          </h3>
+          <p>
+            <span data-lang="zh">Lignum Vitae（生命之树）作为世界最硬的天然木材之一，在Etsy、Pinterest等平台上，其手工艺品搜索量年增超40%。传统木工、佛珠制作者在YouTube上分享打磨愈创木的视频，每月播放量超过数百万次。</span>
+            <span data-lang="en">Searches for Lignum Vitae crafts on Etsy and Pinterest have grown over 40% year-on-year. Traditional woodworkers and mala-bead makers are posting YouTube videos of hand-turning Guaiacum beads — collectively accumulating millions of monthly views as global interest in artisan jewelry surges.</span>
+            <span data-lang="ja">EtsyやPinterestでのリグナムバイタ工芸品の検索数は年率40%以上増加。伝統木工職人や念珠職人がYouTubeで製作動画を公開し、毎月数百万回再生を集めている。アルチザンジュエリーへの関心が世界的に高まっている証拠だ。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">04</div>
+        <div class="trend-content">
+          <span class="trend-tag">CULTURE</span>
+          <h3>
+            <span data-lang="zh">中国木质手串文化出海</span>
+            <span data-lang="en">Chinese Wood Bracelet Culture Goes Global</span>
+            <span data-lang="ja">中国木製念珠文化の世界進出</span>
+          </h3>
+          <p>
+            <span data-lang="zh">随着中国文创出海热潮，"Chinese Buddhist bracelet"和"Chinese bead meaning"在Google Trends上已成为持续热词。愈创木等珍贵木质佛珠以其独特的文化叙事和精良工艺，正在海外市场逐渐建立独特的品牌认知。</span>
+            <span data-lang="en">As Chinese cultural exports gain momentum, "Chinese Buddhist bracelet" and "Chinese bead meaning" have become sustained trending terms on Google Trends. Premium wood mala beads — led by rare materials like Guaiacum — are building distinct brand identities in overseas markets through cultural storytelling and craftsmanship.</span>
+            <span data-lang="ja">中国文化の海外発信が盛んになるにつれ、「中国仏教ブレスレット」「中国ビーズの意味」がGoogleトレンドで継続的にトレンド入り。愈創木などの希少素材を用いた念珠は、文化的ストーリーテリングと職人技を武器に、海外市場で独自のブランド認知を築きつつある。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">05</div>
+        <div class="trend-content">
+          <span class="trend-tag">CONSERVATION</span>
+          <h3>
+            <span data-lang="zh">濒危木材的保育与可持续采购</span>
+            <span data-lang="en">Endangered Wood & Sustainable Sourcing</span>
+            <span data-lang="ja">絶滅危惧木材と持続可能な調達</span>
+          </h3>
+          <p>
+            <span data-lang="zh">愈创木已被列入CITES附录二，属于濒危保护木材。全球消费者对"可持续木质饰品"的关注度急剧上升，"ethical wood jewelry"和"sustainable guaiacum"等词在生态消费者社群中持续走热，促使手艺人更加重视原料的合法溯源与生态认证。</span>
+            <span data-lang="en">Guaiacum is listed under CITES Appendix II as an endangered species. Global consumer interest in "sustainable wood jewelry" and "ethical guaiacum sourcing" is surging in eco-conscious communities, pushing artisans to prioritize certified, legally traceable raw materials and transparent supply chains.</span>
+            <span data-lang="ja">愈創木はCITES附属書IIに絶滅危惧種として掲載されている。「サステナブルウッドジュエリー」や「エシカルなグアイアクム調達」への関心がエコ意識の高いコミュニティで急上昇しており、職人たちが合法的に追跡可能な原材料と透明なサプライチェーンを重視する流れが加速している。</span>
+          </p>
+        </div>
+      </div>
+
+      <div class="trend-item">
+        <div class="trend-num">06</div>
+        <div class="trend-content">
+          <span class="trend-tag">WELLNESS</span>
+          <h3>
+            <span data-lang="zh">正念饰品与焦虑疗愈的市场爆发</span>
+            <span data-lang="en">Mindfulness Jewelry & Anxiety Relief Market Boom</span>
+            <span data-lang="ja">マインドフルネスジュエリーと不安緩和市場の急拡大</span>
+          </h3>
+          <p>
+            <span data-lang="zh">后疫情时代，全球"mindfulness jewelry"市场规模预计2025年突破30亿美元。佛珠手串作为"可穿戴冥想工具"在TikTok、Instagram上持续引爆话题，天然木质材料因其触觉疗愈特性尤受追捧。</span>
+            <span data-lang="en">Post-pandemic, the global "mindfulness jewelry" market is projected to surpass $3 billion by 2025. Mala bead bracelets as "wearable meditation tools" continue to go viral on TikTok and Instagram, with natural wood materials particularly prized for their tactile healing qualities.</span>
+            <span data-lang="ja">ポストパンデミック期、世界の「マインドフルネスジュエリー」市場は2025年に30億ドル突破が予測されている。念珠ブレスレットが「装着可能な瞑想ツール」としてTikTokやInstagramでバイラル化しており、天然木素材は触覚癒し効果で特に人気が高い。</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    </div>
+  </section>
+
+  <!-- HEALING SECTION -->
+  <div class="tibetan-band"></div>
+  <section id="healing">
+    <div class="section-label">Spiritual & Physical</div>
+    <h2 class="section-title">
+      <span data-lang="zh">愈创木的疗愈力量</span>
+      <span data-lang="en">The Healing Power of Guaiacum</span>
+      <span data-lang="ja">愈創木の癒しの力</span>
+    </h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">
+      <span data-lang="zh">从草药医学到精神修行，愈创木在多个维度承载着人类对自愈的向往。</span>
+      <span data-lang="en">From herbal medicine to spiritual practice, Guaiacum embodies humanity's yearning for self-healing across multiple dimensions.</span>
+      <span data-lang="ja">薬草医学から霊的修行まで、愈創木は人類の癒しへの渇望を多次元にわたって体現している。</span>
+    </p>
+    <div class="healing-grid">
+
+      <div class="healing-card">
+        <div class="healing-icon">💎</div>
+        <div class="healing-title">
+          <span data-lang="zh">接地能量</span>
+          <span data-lang="en">Grounding Energy</span>
+          <span data-lang="ja">グラウンディング</span>
+        </div>
+        <div class="healing-text">
+          <span data-lang="zh">愈创木沉入水中的特质象征着"扎根大地"的能量。佩戴者认为其有助于稳定情绪、消解焦虑，被冥想修行者视为接地气的天然护身符。</span>
+          <span data-lang="en">Its density — sinking in water — symbolizes "rooted earth" energy. Wearers find it stabilizes emotions and dissolves anxiety, valued by meditators as a natural grounding talisman.</span>
+          <span data-lang="ja">水に沈む密度は「大地に根ざす」エネルギーを象徴。感情を安定させ不安を和らげるとして、瞑想修行者から天然のグラウンディング護符として重宝されている。</span>
+        </div>
+      </div>
+
+      <div class="healing-card">
+        <div class="healing-icon">🌡️</div>
+        <div class="healing-title">
+          <span data-lang="zh">抗炎活性</span>
+          <span data-lang="en">Anti-inflammatory</span>
+          <span data-lang="ja">抗炎症作用</span>
+        </div>
+        <div class="healing-text">
+          <span data-lang="zh">现代草药学证实，愈创木含有丰富的愈创木酚（guaiacol），具有明显的抗炎、抗氧化活性，对风湿性关节炎和痛风具有传统疗效记录。</span>
+          <span data-lang="en">Modern herbalism confirms guaiacol's significant anti-inflammatory and antioxidant activity. Traditional records document effectiveness for rheumatoid arthritis and gout — backed by contemporary clinical interest.</span>
+          <span data-lang="ja">現代ハーブ学はグアイアコールの顕著な抗炎症・抗酸化活性を確認。リウマチ性関節炎や痛風への伝統的な効能は、現代の臨床研究でも注目されている。</span>
+        </div>
+      </div>
+
+      <div class="healing-card">
+        <div class="healing-icon">🌀</div>
+        <div class="healing-title">
+          <span data-lang="zh">淋巴净化</span>
+          <span data-lang="en">Lymphatic Cleansing</span>
+          <span data-lang="ja">リンパ浄化</span>
+        </div>
+        <div class="healing-text">
+          <span data-lang="zh">传统加勒比医学与阿育吠陀均将愈创木列为"净化血液与淋巴"的要药，其皂苷成分具有利尿、淋巴激活作用，被用于皮肤问题和系统性排毒疗程。</span>
+          <span data-lang="en">Both Caribbean traditional medicine and Ayurveda list Guaiacum as a key "blood and lymph purifier." Its saponins offer diuretic and lymphatic-activating effects, used in skin conditions and systemic detox programs.</span>
+          <span data-lang="ja">カリブ海の伝統医学とアーユルヴェーダの両方で「血液・リンパの浄化」に必須とされる。サポニン成分による利尿・リンパ活性化作用は、皮膚疾患や解毒プログラムに活用されている。</span>
+        </div>
+      </div>
+
+      <div class="healing-card">
+        <div class="healing-icon">📿</div>
+        <div class="healing-title">
+          <span data-lang="zh">佛教加持</span>
+          <span data-lang="en">Buddhist Blessing</span>
+          <span data-lang="ja">仏教的加持</span>
+        </div>
+        <div class="healing-text">
+          <span data-lang="zh">在藏传与汉传佛教中，愈创木珠被视为具有"定业障、增福慧"的功德材质。经过开光加持的愈创木手串，被认为能帮助修行者持守正念、防护负能量。</span>
+          <span data-lang="en">In both Tibetan and Chinese Buddhism, Guaiacum beads are regarded as merit-bearing materials that "purify karmic obstacles and increase wisdom." Consecrated Guaiacum malas are believed to help practitioners maintain mindfulness and ward off negative energies.</span>
+          <span data-lang="ja">チベット仏教と漢伝仏教の双方で、愈創木の珠は「業障を浄化し、福慧を増す」功徳素材とされる。開光（聖別）された愈創木念珠は、修行者の正念を保ち、負のエネルギーを防護するとされる。</span>
+        </div>
+      </div>
+
+      <div class="healing-card">
+        <div class="healing-icon">🕯️</div>
+        <div class="healing-title">
+          <span data-lang="zh">木香疗愈</span>
+          <span data-lang="en">Aromatic Therapy</span>
+          <span data-lang="ja">アロマ療法</span>
+        </div>
+        <div class="healing-text">
+          <span data-lang="zh">体温激活下，愈创木珠会散发出淡雅的天然木质香气，这种香气被证实能刺激副交感神经系统，降低皮质醇水平，达到天然减压的效果——可穿戴的"香薰疗法"。</span>
+          <span data-lang="en">Body heat activates a subtle natural woody fragrance from Guaiacum beads. This scent is documented to stimulate the parasympathetic nervous system and lower cortisol levels — effectively a wearable form of aromatherapy.</span>
+          <span data-lang="ja">体温により愈創木の珠から淡い天然の木の香りが立ち上る。この香りは副交感神経を刺激しコルチゾール値を低下させることが確認されており、「装着可能なアロマセラピー」として機能する。</span>
+        </div>
+      </div>
+
+      <div class="healing-card">
+        <div class="healing-icon">♾️</div>
+        <div class="healing-title">
+          <span data-lang="zh">岁月盘玩</span>
+          <span data-lang="en">Aging Gracefully</span>
+          <span data-lang="ja">経年変化の美</span>
+        </div>
+        <div class="healing-text">
+          <span data-lang="zh">愈创木含丰富天然油脂，长期盘玩后表面会形成独特的"包浆"——深邃温润的光泽，如古玉般沉静。每一串都是独一无二、随主人而变的岁月记录。</span>
+          <span data-lang="en">Rich in natural oils, Guaiacum develops a unique "patina glaze" with daily handling — a deep, warm luster reminiscent of ancient jade. Each bracelet becomes a unique record of time, shaped by its owner's touch.</span>
+          <span data-lang="ja">天然油脂を豊富に含む愈創木は、長年の使用で独特の「包漿（patina）」が生まれる——古玉のような深く温かな輝き。一本一本が所有者とともに刻む、唯一無二の時間の記録だ。</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div class="quote-section">
+    <p class="quote-text">
+      <span data-lang="zh">「木生于土，长于水，炼于火，成于时间——愈创木所经历的，正是每一个灵魂应当历经的修行。」</span>
+      <span data-lang="en">"Born of earth, nurtured by water, tempered by fire, perfected by time — the journey of Guaiacum is the journey every soul must undertake."</span>
+      <span data-lang="ja">「土に生まれ、水に育ち、火に鍛えられ、時間によって完成される——愈創木の旅路は、すべての魂が歩むべき修行の道である。」</span>
+    </p>
+    <div class="quote-author">— 燃造物 · GUAIACUM CRAFT</div>
   </div>
-</section>
 
-<!-- ========== INTRO STRIP ========== -->
-<section class="intro-strip">
-  <div class="strip-inner">
-    <div class="strip-item">
-      <span class="strip-icon">⟡</span>
-      <span>硬度 4500+</span>
-    </div>
-    <div class="strip-sep">✦</div>
-    <div class="strip-item">
-      <span class="strip-icon">⟡</span>
-      <span>越盘越香</span>
-    </div>
-    <div class="strip-sep">✦</div>
-    <div class="strip-item">
-      <span class="strip-icon">⟡</span>
-      <span>自然反油</span>
-    </div>
-    <div class="strip-sep">✦</div>
-    <div class="strip-item">
-      <span class="strip-icon">⟡</span>
-      <span>陈化老料</span>
-    </div>
-    <div class="strip-sep">✦</div>
-    <div class="strip-item">
-      <span class="strip-icon">⟡</span>
-      <span>终身养护</span>
-    </div>
-  </div>
-</section>
-
-<!-- ========== ABOUT / 科普 ========== -->
-<section class="section" id="about">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">木性源流</span>
-      <h2 class="section-title">何为愈创木</h2>
-      <p class="section-sub">GUAIACUM OFFICINALE — 生命之树的另一个名字</p>
-    </div>
-
-    <div class="about-grid">
-      <div class="about-visual">
-        <div class="wood-card">
-          <div class="wood-ring-art">
-            <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-              <!-- 树年轮艺术 -->
-              <defs>
-                <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#c8a96e" stop-opacity="0.3"/>
-                  <stop offset="100%" stop-color="#1a1208" stop-opacity="0"/>
-                </radialGradient>
-              </defs>
-              <circle cx="160" cy="160" r="155" fill="none" stroke="#c8a96e" stroke-width="0.5" opacity="0.3"/>
-              <circle cx="160" cy="160" r="135" fill="none" stroke="#c8a96e" stroke-width="0.8" opacity="0.25"/>
-              <circle cx="160" cy="160" r="112" fill="none" stroke="#b8942a" stroke-width="1" opacity="0.35"/>
-              <circle cx="160" cy="160" r="90" fill="none" stroke="#c8a96e" stroke-width="1.2" opacity="0.4"/>
-              <circle cx="160" cy="160" r="68" fill="none" stroke="#d4af50" stroke-width="1.5" opacity="0.5"/>
-              <circle cx="160" cy="160" r="48" fill="none" stroke="#c8a96e" stroke-width="2" opacity="0.6"/>
-              <circle cx="160" cy="160" r="30" fill="none" stroke="#b8942a" stroke-width="2.5" opacity="0.7"/>
-              <circle cx="160" cy="160" r="14" fill="#c8a96e" opacity="0.5"/>
-              <circle cx="160" cy="160" r="6" fill="#d4af50" opacity="0.9"/>
-              <!-- 纹理线 -->
-              <line x1="160" y1="5" x2="160" y2="315" stroke="#c8a96e" stroke-width="0.3" opacity="0.15"/>
-              <line x1="5" y1="160" x2="315" y2="160" stroke="#c8a96e" stroke-width="0.3" opacity="0.15"/>
-              <line x1="50" y1="50" x2="270" y2="270" stroke="#c8a96e" stroke-width="0.3" opacity="0.1"/>
-              <line x1="270" y1="50" x2="50" y2="270" stroke="#c8a96e" stroke-width="0.3" opacity="0.1"/>
-              <!-- 藏文装饰 Om -->
-              <text x="160" y="170" text-anchor="middle" font-size="28" fill="#d4af50" opacity="0.6" font-family="serif">ॐ</text>
-            </svg>
-          </div>
-          <div class="wood-badge">
-            <span class="badge-num">4500</span>
-            <span class="badge-unit">莫氏硬度单位</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-text">
-        <div class="text-block">
-          <h3 class="block-title">生命之树</h3>
-          <p>愈创木，学名<em>愈疮木</em>，隶属于蒺藜科愈创木属，同时也是牙买加的国花。它有一个令人肃然的别名——"生命之树"。这并非虚美之词，而是源于它从根至梢皆可为人所用的慷慨天性。</p>
-          <p>木材中可提纯愈创木酚，具备天然消炎功效，被广泛应用于护肤与医药领域；传统工业中，因其密度极高、耐腐蚀、且自带独特的"自润性"——能在无需外加润滑油的情况下，长期浸泡于海水中也不损毁，曾被制作成远洋轮船的转向轴外轴承，在茫茫大洋中默默承重数载。</p>
-        </div>
-
-        <div class="text-block">
-          <h3 class="block-title">陈化老料的来源</h3>
-          <p>愈创木在本世纪初已被列入 CITES 附录 II 进行国际贸易管制——这是真实存在的保护。正因如此，新料极为稀缺，市面上流通的绝大多数成品均来自上世纪合规流入国内的陈化老料，木性早已稳定，油脂内敛沉实，远非新料可比。</p>
-          <p>陈化，是时间给予木材最好的礼物。</p>
-        </div>
-
-        <div class="prop-list">
-          <div class="prop-item">
-            <span class="prop-icon">◈</span>
-            <div>
-              <strong>密度极高</strong>
-              <span>沉于水，手感压实</span>
-            </div>
-          </div>
-          <div class="prop-item">
-            <span class="prop-icon">◈</span>
-            <div>
-              <strong>自然反油</strong>
-              <span>越盘越润，无需外抹任何油脂</span>
-            </div>
-          </div>
-          <div class="prop-item">
-            <span class="prop-icon">◈</span>
-            <div>
-              <strong>天然香气</strong>
-              <span>奶油可可 · 木质寺庙 · 话梅果香</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SCIENCE 木性科普 ========== -->
-<section class="section section-dark" id="science">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">深度科普</span>
-      <h2 class="section-title">木性解读</h2>
-      <p class="section-sub">从纹理到香气，从取料到包浆，每一个细节都有它的道理</p>
-    </div>
-
-    <div class="science-cards">
-
-      <div class="sci-card">
-        <div class="sci-card-icon">
-          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="30,5 55,47 5,47" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
-            <polygon points="30,15 47,43 13,43" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.5"/>
-            <circle cx="30" cy="33" r="4" fill="#c8a96e" opacity="0.8"/>
-          </svg>
-        </div>
-        <h3>取料位置的学问</h3>
-        <p>本店选用二膘料——介于树心与树皮之间的黄金位置，是整棵树木密度最高、油性最为饱满的部位。如同玉石取料，位置决定品质，但它只是描述截取部位，并不代表料子的绝对优劣，需结合树龄、产地综合判断。</p>
-      </div>
-
-      <div class="sci-card">
-        <div class="sci-card-icon">
-          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="30" cy="30" r="22" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
-            <circle cx="30" cy="30" r="14" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.6"/>
-            <circle cx="30" cy="30" r="7" fill="#c8a96e" opacity="0.5"/>
-            <line x1="30" y1="8" x2="30" y2="52" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
-            <line x1="8" y1="30" x2="52" y2="30" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
-          </svg>
-        </div>
-        <h3>颜色深浅与包浆</h3>
-        <p>全新未盘玩的珠子颜色偏浅，这是正常现象。在氧化与上手盘玩的双重作用下，珠子颜色会由浅棕逐步转为深黑，最终呈现温润油亮的包浆。颜色深浅只代表氧化程度，与木料本身的品质高下无关。</p>
-      </div>
-
-      <div class="sci-card">
-        <div class="sci-card-icon">
-          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <path d="M30 8 C20 8, 8 18, 8 30 C8 42, 20 52, 30 52 C40 52, 52 42, 52 30 C52 18, 40 8, 30 8Z" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
-            <path d="M30 16 C24 20, 18 25, 20 34 C22 43, 30 48, 38 44 C46 40, 48 30, 44 23 C40 16, 36 12, 30 16Z" fill="none" stroke="#c8a96e" stroke-width="1" opacity="0.5"/>
-            <circle cx="30" cy="30" r="4" fill="#c8a96e" opacity="0.7"/>
-          </svg>
-        </div>
-        <h3>香气的秘密</h3>
-        <p>愈创木自带三种天然香型：<strong>奶油可可香、木质寺庙香、话梅果香</strong>。香味源于木材油脂不断析出并与空气中的物质结合生成的芳香分子。本店使用"香水料"——原用于提取香水原料的特选木材，油脂含量格外充沛，盘玩时间越长，香气越醇厚绵长。</p>
-      </div>
-
-      <div class="sci-card">
-        <div class="sci-card-icon">
-          <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
-            <rect x="12" y="12" width="36" height="36" rx="4" fill="none" stroke="#c8a96e" stroke-width="1.5"/>
-            <path d="M12 24 L48 24" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
-            <path d="M12 36 L48 36" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
-            <path d="M24 12 L24 48" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
-            <path d="M36 12 L36 48" stroke="#c8a96e" stroke-width="0.8" opacity="0.4"/>
-          </svg>
-        </div>
-        <h3>纹理与稀有度</h3>
-        <p>愈创木的纹理形态由树木的生长环境决定，如同自然的指纹，无二相同。一般而言，纹路越少越均匀，木料越为珍稀；纹路杂乱交错，则品相相对平常。选购时，纹理可作为参考维度之一，但并不是评判木料的唯一标准。</p>
-      </div>
-
-    </div>
-
-    <!-- 香气卡 -->
-    <div class="aroma-section">
-      <h3 class="aroma-title">三种香型 · 感受流派</h3>
-      <div class="aroma-cards">
-        <div class="aroma-card">
-          <div class="aroma-wave wave-1"></div>
-          <span class="aroma-emoji">🍫</span>
-          <h4>奶油可可香</h4>
-          <p>温柔绵密，如同一杯刚冲开的热可可，在掌心缓缓漫开，甜而不腻，为最多玩家所感知的主调香型。</p>
-        </div>
-        <div class="aroma-card">
-          <div class="aroma-wave wave-2"></div>
-          <span class="aroma-emoji">🪔</span>
-          <h4>木质寺庙香</h4>
-          <p>沉静古朴，带有一丝幽凉的木质底调，如古寺晨曦中的第一缕香烟，令人静心安神。</p>
-        </div>
-        <div class="aroma-card">
-          <div class="aroma-wave wave-3"></div>
-          <span class="aroma-emoji">🍑</span>
-          <h4>话梅果香</h4>
-          <p>微酸回甘，果香清新，似话梅蜜饯的余韵，带着一丝意想不到的俏皮，往往令初次体验者惊喜。</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== COMPARE 对比鉴别 ========== -->
-<section class="section" id="compare">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">对比鉴别</span>
-      <h2 class="section-title">愈创木 vs 常见木材</h2>
-      <p class="section-sub">知己知彼，方能识真辨伪</p>
-    </div>
-
-    <div class="compare-table-wrap">
+  <!-- COMPARE SECTION -->
+  <section id="compare">
+    <div class="section-label">Material Comparison</div>
+    <h2 class="section-title">
+      <span data-lang="zh">珍贵木材对比</span>
+      <span data-lang="en">Premium Woods Compared</span>
+      <span data-lang="ja">貴重木材の比較</span>
+    </h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">
+      <span data-lang="zh">愈创木与其他经典佛珠用材的全面对比，帮助您做出最适合的选择。</span>
+      <span data-lang="en">A comprehensive comparison of Guaiacum against other classic bracelet materials to help you choose wisely.</span>
+      <span data-lang="ja">愈創木と他の代表的な念珠素材との徹底比較で、最適な選択をサポートします。</span>
+    </p>
+    <div class="compare-wrapper">
       <table class="compare-table">
         <thead>
           <tr>
-            <th>对比维度</th>
-            <th class="highlight-col">愈创木</th>
-            <th>小叶紫檀</th>
-            <th>绿檀（萨米维腊木）</th>
-            <th>老山檀</th>
+            <th>
+              <span data-lang="zh">材料</span>
+              <span data-lang="en">Material</span>
+              <span data-lang="ja">素材</span>
+            </th>
+            <th>
+              <span data-lang="zh">密度</span>
+              <span data-lang="en">Density</span>
+              <span data-lang="ja">密度</span>
+            </th>
+            <th>
+              <span data-lang="zh">香气</span>
+              <span data-lang="en">Scent</span>
+              <span data-lang="ja">香り</span>
+            </th>
+            <th>
+              <span data-lang="zh">文化寓意</span>
+              <span data-lang="en">Symbolism</span>
+              <span data-lang="ja">文化的意味</span>
+            </th>
+            <th>
+              <span data-lang="zh">稀缺性</span>
+              <span data-lang="en">Rarity</span>
+              <span data-lang="ja">希少性</span>
+            </th>
+            <th>
+              <span data-lang="zh">盘玩变化</span>
+              <span data-lang="en">Patina</span>
+              <span data-lang="ja">経年変化</span>
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>莫氏硬度</td>
-            <td class="highlight-col"><strong>~4500</strong></td>
-            <td>~3600</td>
-            <td>~3200</td>
-            <td>~2800</td>
+            <td class="highlight-cell">
+              <span data-lang="zh">愈创木</span>
+              <span data-lang="en">Guaiacum</span>
+              <span data-lang="ja">愈創木</span>
+            </td>
+            <td>
+              <span data-lang="zh">极高（沉水）</span>
+              <span data-lang="en">Extremely High (sinks)</span>
+              <span data-lang="ja">非常に高い（沈水）</span>
+            </td>
+            <td>
+              <span data-lang="zh">淡雅木香，需体温激活</span>
+              <span data-lang="en">Subtle, body-heat activated</span>
+              <span data-lang="ja">微か、体温で活性化</span>
+            </td>
+            <td>
+              <span data-lang="zh">定力·守护·接地</span>
+              <span data-lang="en">Grounding · Protection · Steadiness</span>
+              <span data-lang="ja">禅定·守護·根</span>
+            </td>
+            <td>
+              <span data-lang="zh">★★★★★（CITES濒危）</span>
+              <span data-lang="en">★★★★★ (CITES endangered)</span>
+              <span data-lang="ja">★★★★★（CITES絶滅危惧）</span>
+            </td>
+            <td>
+              <span data-lang="zh">极佳包浆，越盘越润</span>
+              <span data-lang="en">Exceptional deep gloss</span>
+              <span data-lang="ja">卓越した包漿</span>
+            </td>
           </tr>
           <tr>
-            <td>主产地</td>
-            <td class="highlight-col">牙买加 / 中美洲</td>
-            <td>印度</td>
-            <td>阿根廷</td>
-            <td>印度 / 东南亚</td>
+            <td>
+              <span data-lang="zh">沉香</span>
+              <span data-lang="en">Agarwood</span>
+              <span data-lang="ja">沈香</span>
+            </td>
+            <td>
+              <span data-lang="zh">高</span>
+              <span data-lang="en">High</span>
+              <span data-lang="ja">高い</span>
+            </td>
+            <td>
+              <span data-lang="zh">醇厚浓郁，名贵香气</span>
+              <span data-lang="en">Rich, deep, prestigious</span>
+              <span data-lang="ja">濃厚、高貴な香り</span>
+            </td>
+            <td>
+              <span data-lang="zh">财富·尊贵·净化</span>
+              <span data-lang="en">Wealth · Nobility · Purification</span>
+              <span data-lang="ja">富·高貴·浄化</span>
+            </td>
+            <td>
+              <span data-lang="zh">★★★★★（极为稀缺）</span>
+              <span data-lang="en">★★★★★ (ultra-rare)</span>
+              <span data-lang="ja">★★★★★（超希少）</span>
+            </td>
+            <td>
+              <span data-lang="zh">优，色泽加深</span>
+              <span data-lang="en">Excellent, deepens in color</span>
+              <span data-lang="ja">優秀、色が深まる</span>
+            </td>
           </tr>
           <tr>
-            <td>颜色变化</td>
-            <td class="highlight-col">浅棕 → 深黑，包浆光亮</td>
-            <td>红棕 → 深红</td>
-            <td>浅棕 → 墨绿色泽</td>
-            <td>浅黄 → 金黄</td>
+            <td>
+              <span data-lang="zh">老山檀香</span>
+              <span data-lang="en">Old Mountain Sandalwood</span>
+              <span data-lang="ja">老山白檀</span>
+            </td>
+            <td>
+              <span data-lang="zh">中高</span>
+              <span data-lang="en">Medium-High</span>
+              <span data-lang="ja">中〜高</span>
+            </td>
+            <td>
+              <span data-lang="zh">恬淡悠长，禅意十足</span>
+              <span data-lang="en">Calm, lingering, meditative</span>
+              <span data-lang="ja">穏やか、持続的、禅的</span>
+            </td>
+            <td>
+              <span data-lang="zh">平和·禅定·延寿</span>
+              <span data-lang="en">Calm · Meditation · Longevity</span>
+              <span data-lang="ja">平和·禅定·長寿</span>
+            </td>
+            <td>
+              <span data-lang="zh">★★★★☆</span>
+              <span data-lang="en">★★★★☆</span>
+              <span data-lang="ja">★★★★☆</span>
+            </td>
+            <td>
+              <span data-lang="zh">良，油脂丰富</span>
+              <span data-lang="en">Good, oil-rich</span>
+              <span data-lang="ja">良好、油脂豊富</span>
+            </td>
           </tr>
           <tr>
-            <td>天然香气</td>
-            <td class="highlight-col">✦ 奶油/寺庙/果香三型</td>
-            <td>淡木香</td>
-            <td>轻微木香</td>
-            <td>浓郁檀香</td>
+            <td>
+              <span data-lang="zh">小叶紫檀</span>
+              <span data-lang="en">Pterocarpus Santalinus</span>
+              <span data-lang="ja">小葉紫檀</span>
+            </td>
+            <td>
+              <span data-lang="zh">高</span>
+              <span data-lang="en">High</span>
+              <span data-lang="ja">高い</span>
+            </td>
+            <td>
+              <span data-lang="zh">微辛微甜，淡而沁心</span>
+              <span data-lang="en">Faintly spicy-sweet, subtle</span>
+              <span data-lang="ja">微かにスパイシー、淡い</span>
+            </td>
+            <td>
+              <span data-lang="zh">驱邪·镇宅·旺气</span>
+              <span data-lang="en">Ward evil · Prosperity · Vitality</span>
+              <span data-lang="ja">邪気払い·繁栄·気</span>
+            </td>
+            <td>
+              <span data-lang="zh">★★★★☆</span>
+              <span data-lang="en">★★★★☆</span>
+              <span data-lang="ja">★★★★☆</span>
+            </td>
+            <td>
+              <span data-lang="zh">极佳，紫气东来</span>
+              <span data-lang="en">Excellent, deep purple sheen</span>
+              <span data-lang="ja">卓越、深紫の艶</span>
+            </td>
           </tr>
           <tr>
-            <td>自润性</td>
-            <td class="highlight-col">✦ 强，自动反油</td>
-            <td>较弱</td>
-            <td>表面吐丝结晶</td>
-            <td>一般</td>
-          </tr>
-          <tr>
-            <td>CITES 管制</td>
-            <td class="highlight-col">附录 II（老料合规）</td>
-            <td>附录 II</td>
-            <td>附录 II</td>
-            <td>附录 II</td>
-          </tr>
-          <tr>
-            <td>标志性特征</td>
-            <td class="highlight-col">极重，沉水，越盘越香</td>
-            <td>毛孔细腻，红木气质</td>
-            <td>羽毛纹理，表面吐丝</td>
-            <td>独特檀香，木质温润</td>
+            <td>
+              <span data-lang="zh">崖柏</span>
+              <span data-lang="en">Cliff Cypress</span>
+              <span data-lang="ja">崖柏</span>
+            </td>
+            <td>
+              <span data-lang="zh">中</span>
+              <span data-lang="en">Medium</span>
+              <span data-lang="ja">中程度</span>
+            </td>
+            <td>
+              <span data-lang="zh">清凉松香，提神醒目</span>
+              <span data-lang="en">Cool, resinous, invigorating</span>
+              <span data-lang="ja">清涼、松脂系、爽快</span>
+            </td>
+            <td>
+              <span data-lang="zh">长寿·清净·山野气息</span>
+              <span data-lang="en">Longevity · Purity · Wild nature</span>
+              <span data-lang="ja">長寿·清浄·山野の気</span>
+            </td>
+            <td>
+              <span data-lang="zh">★★★☆☆</span>
+              <span data-lang="en">★★★☆☆</span>
+              <span data-lang="ja">★★★☆☆</span>
+            </td>
+            <td>
+              <span data-lang="zh">良，香气持久</span>
+              <span data-lang="en">Good, fragrance persists</span>
+              <span data-lang="ja">良好、香り持続</span>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
+  </section>
 
-    <div class="distinguish-tips">
-      <h3>辨别真假愈创木 · 三步法</h3>
-      <div class="tips-grid">
-        <div class="tip-item">
-          <span class="tip-num">01</span>
-          <h4>沉水测试</h4>
-          <p>真正的愈创木密度极高，入水必沉。若珠子轻飘浮于水面，则需谨慎对待。</p>
-        </div>
-        <div class="tip-item">
-          <span class="tip-num">02</span>
-          <h4>香气辨别</h4>
-          <p>轻搓珠子后凑鼻细闻，真品愈创木会有淡雅奶油或木质气息，无刺鼻异味。</p>
-        </div>
-        <div class="tip-item">
-          <span class="tip-num">03</span>
-          <h4>纹理观察</h4>
-          <p>愈创木纹理细密，与绿檀的羽毛状纹理明显不同。纹路过于均匀规则，则可能经过人工处理。</p>
-        </div>
-      </div>
-    </div>
+  <!-- GALLERY -->
+  <div class="tibetan-band"></div>
+  <section id="gallery">
+    <div class="section-label">Collection Showcase</div>
+    <h2 class="section-title">
+      <span data-lang="zh">燃造物精选系列</span>
+      <span data-lang="en">Signature Collections</span>
+      <span data-lang="ja">シグネチャーコレクション</span>
+    </h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">
+      <span data-lang="zh">每一串手串，都是一座木与灵之间的桥梁。以下为燃造物代表性系列。</span>
+      <span data-lang="en">Each bracelet is a bridge between wood and soul. Presented here are RANZO's signature collections.</span>
+      <span data-lang="ja">一本一本の念珠は、木と魂を繋ぐ橋。以下は燃造物の代表的なコレクションです。</span>
+    </p>
+    <div class="gallery-grid">
 
-  </div>
-</section>
-
-<!-- ========== GALLERY 展示 ========== -->
-<section class="section section-dark" id="gallery">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">珠串展示</span>
-      <h2 class="section-title">每一颗，都是时间的结晶</h2>
-      <p class="section-sub">从素珠到包浆，见证一串手串的成长历程</p>
-    </div>
-
-    <div class="gallery-tabs">
-      <button class="tab-btn active" data-tab="new">新串·素颜</button>
-      <button class="tab-btn" data-tab="mid">中期·渐变</button>
-      <button class="tab-btn" data-tab="old">老包浆·深黑</button>
-    </div>
-
-    <div class="gallery-stage">
-      <div class="gallery-panel active" id="tab-new">
-        <div class="gallery-grid">
-          <div class="g-card">
-            <div class="g-visual bead-new-1">
-              <div class="bead-mock">
-                <div class="bead-inner grain-light"></div>
-              </div>
-            </div>
-            <div class="g-info">
-              <h4>素颜新串</h4>
-              <p>刚制作完成，珠子呈浅棕色调，木质纹理清晰可见，携带淡淡的初始香气。</p>
-              <span class="g-tag">氧化程度：初始</span>
-            </div>
-          </div>
-          <div class="g-card">
-            <div class="g-visual bead-new-2">
-              <div class="bead-mock">
-                <div class="bead-inner grain-light-2"></div>
-              </div>
-            </div>
-            <div class="g-info">
-              <h4>纹理初现</h4>
-              <p>上手几日后，纹路在包浆的映衬下开始显现，触感逐渐变得细腻圆润。</p>
-              <span class="g-tag">盘玩：1-4 周</span>
-            </div>
-          </div>
+      <div class="gallery-card">
+        <div class="gallery-img">🌊</div>
+        <div class="gallery-caption">
+          <h3>
+            <span data-lang="zh">「沉水」系列</span>
+            <span data-lang="en">"Sinking Water" Series</span>
+            <span data-lang="ja">「沈水」シリーズ</span>
+          </h3>
+          <p>
+            <span data-lang="zh">以愈创木沉水特质命名，圆珠12mm，原木色</span>
+            <span data-lang="en">Named for Guaiacum's density; 12mm round beads, natural finish</span>
+            <span data-lang="ja">愈創木の沈水特性にちなんで命名、12mm丸珠、ナチュラル</span>
+          </p>
         </div>
       </div>
 
-      <div class="gallery-panel" id="tab-mid">
-        <div class="gallery-grid">
-          <div class="g-card">
-            <div class="g-visual">
-              <div class="bead-mock">
-                <div class="bead-inner grain-mid"></div>
-              </div>
-            </div>
-            <div class="g-info">
-              <h4>中期转变</h4>
-              <p>持续盘玩一两个月后，珠子颜色明显加深，油脂析出量增加，手感愈发温润。</p>
-              <span class="g-tag">盘玩：1-3 个月</span>
-            </div>
-          </div>
-          <div class="g-card">
-            <div class="g-visual">
-              <div class="bead-mock">
-                <div class="bead-inner grain-mid-2"></div>
-              </div>
-            </div>
-            <div class="g-info">
-              <h4>香气盛期</h4>
-              <p>油脂充分析出，三种香型中最突出的一种开始稳定呈现，芬芳持久而内敛。</p>
-              <span class="g-tag">盘玩：3-6 个月</span>
-            </div>
-          </div>
+      <div class="gallery-card">
+        <div class="gallery-img">🔥</div>
+        <div class="gallery-caption">
+          <h3>
+            <span data-lang="zh">「燃」限定款</span>
+            <span data-lang="en">"Flame" Limited Edition</span>
+            <span data-lang="ja">「燃」限定版</span>
+          </h3>
+          <p>
+            <span data-lang="zh">炭化处理愈创木，黑金双色，藏式繁花结</span>
+            <span data-lang="en">Carbonized Guaiacum, black & gold, Tibetan floral knot</span>
+            <span data-lang="ja">炭化加工愈創木、黒金二色、チベット花結び</span>
+          </p>
         </div>
       </div>
 
-      <div class="gallery-panel" id="tab-old">
-        <div class="gallery-grid">
-          <div class="g-card">
-            <div class="g-visual">
-              <div class="bead-mock">
-                <div class="bead-inner grain-old"></div>
-              </div>
-            </div>
-            <div class="g-info">
-              <h4>深黑包浆</h4>
-              <p>经年盘玩后，珠子趋于深黑，光泽如镜，包浆厚实，举手投足间折射出低调的光。</p>
-              <span class="g-tag">盘玩：6 个月以上</span>
-            </div>
-          </div>
-          <div class="g-card">
-            <div class="g-visual">
-              <div class="bead-mock">
-                <div class="bead-inner grain-old-2"></div>
-              </div>
-            </div>
-            <div class="g-info">
-              <h4>极品老浆</h4>
-              <p>数年精心盘玩所成，色泽深沉如墨，触感如婴儿肌肤般细腻，是时间最好的证明。</p>
-              <span class="g-tag">盘玩：1 年以上</span>
-            </div>
-          </div>
+      <div class="gallery-card">
+        <div class="gallery-img">☸️</div>
+        <div class="gallery-caption">
+          <h3>
+            <span data-lang="zh">「转经」素珠</span>
+            <span data-lang="en">"Prayer Wheel" Pure Mala</span>
+            <span data-lang="ja">「転経」素珠</span>
+          </h3>
+          <p>
+            <span data-lang="zh">108颗8mm愈创木素珠，藏传风格，经僧侣开光</span>
+            <span data-lang="en">108 × 8mm Guaiacum beads, Tibetan style, monastery-blessed</span>
+            <span data-lang="ja">愈創木8mm×108珠、チベット様式、僧侶開光済み</span>
+          </p>
         </div>
       </div>
+
+      <div class="gallery-card">
+        <div class="gallery-img">🌿</div>
+        <div class="gallery-caption">
+          <h3>
+            <span data-lang="zh">「生命树」原态</span>
+            <span data-lang="en">"Lignum Vitae" Natural Series</span>
+            <span data-lang="ja">「生命の木」ナチュラル</span>
+          </h3>
+          <p>
+            <span data-lang="zh">原态不染色，保留天然纹路，6mm细珠叠戴款</span>
+            <span data-lang="en">Undyed, preserves natural grain; stackable 6mm slender beads</span>
+            <span data-lang="ja">無染色、天然木目保持；6mm細珠スタッキングスタイル</span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GUESTBOOK -->
+  <div class="tibetan-band"></div>
+  <section id="guestbook">
+    <div class="section-label">Community</div>
+    <h2 class="section-title">
+      <span data-lang="zh">留言与分享</span>
+      <span data-lang="en">Guestbook & Sharing</span>
+      <span data-lang="ja">芳名帳とシェア</span>
+    </h2>
+    <div class="gold-line"></div>
+    <p class="section-desc">
+      <span data-lang="zh">分享您与愈创木的故事，或留下您想对燃造物说的话。</span>
+      <span data-lang="en">Share your story with Guaiacum, or leave a message for RANZO.</span>
+      <span data-lang="ja">愈創木とのエピソードをシェアするか、燃造物へのメッセージをどうぞ。</span>
+    </p>
+
+    <div class="guestbook-form">
+      <div class="form-group">
+        <label>
+          <span data-lang="zh">您的名字</span>
+          <span data-lang="en">Your Name</span>
+          <span data-lang="ja">お名前</span>
+        </label>
+        <input type="text" id="gb-name" placeholder="Anonymous / 匿名 / 匿名" />
+      </div>
+      <div class="form-group">
+        <label>
+          <span data-lang="zh">来自</span>
+          <span data-lang="en">From</span>
+          <span data-lang="ja">ご出身</span>
+        </label>
+        <input type="text" id="gb-from" placeholder="City, Country" />
+      </div>
+      <div class="form-group">
+        <label>
+          <span data-lang="zh">留言</span>
+          <span data-lang="en">Message</span>
+          <span data-lang="ja">メッセージ</span>
+        </label>
+        <textarea id="gb-msg" placeholder="..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitComment()">
+        <span data-lang="zh">留下印记 ✦</span>
+        <span data-lang="en">Leave a Mark ✦</span>
+        <span data-lang="ja">足跡を残す ✦</span>
+      </button>
     </div>
 
-    <!-- 盘玩时间线 -->
-    <div class="timeline">
-      <h3 class="timeline-title">一串手串的成长轨迹</h3>
-      <div class="timeline-track">
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-label">第 0 天</div>
-          <div class="tl-desc">浅棕素颜，封存待发</div>
+    <div class="comment-list" id="comment-list">
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-name">云游僧 · Yunnan</span>
+          <span>2026.06.19</span>
         </div>
-        <div class="tl-line"></div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-label">第 7 天</div>
-          <div class="tl-desc">氧化启动，颜色初变</div>
+        <div class="comment-text">手中这串愈创木，每次盘玩都像在和一棵百年老树对话。那种厚重感，是沉香给不了的。</div>
+      </div>
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-name">Kenji · Kyoto</span>
+          <span>2026.06.20</span>
         </div>
-        <div class="tl-line"></div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-label">1 个月</div>
-          <div class="tl-desc">油脂渐出，香气渐浓</div>
+        <div class="comment-text">グアイアクムの念珠を初めて手にした時、その重さに驚きました。心が自然と落ち着きます。素晴らしいサイト！</div>
+      </div>
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-name">Sarah M. · London</span>
+          <span>2026.06.21</span>
         </div>
-        <div class="tl-line"></div>
-        <div class="tl-item">
-          <div class="tl-dot"></div>
-          <div class="tl-label">3-6 月</div>
-          <div class="tl-desc">包浆成型，深褐转黑</div>
-        </div>
-        <div class="tl-line"></div>
-        <div class="tl-item">
-          <div class="tl-dot tl-dot-gold"></div>
-          <div class="tl-label">1 年 +</div>
-          <div class="tl-desc">极品深黑，光若明镜</div>
-        </div>
+        <div class="comment-text">I had no idea Guaiacum was the world's heaviest wood. The "Flame" limited edition bracelet is absolutely stunning. Ordering one tonight!</div>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- ========== FAQ 盘玩养护 ========== -->
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">盘玩养护</span>
-      <h2 class="section-title">常见问答</h2>
-      <p class="section-sub">五年门店实测，十五个真实问题，给你最诚实的回答</p>
-    </div>
-
-    <div class="faq-layout">
-      <div class="faq-categories">
-        <button class="faq-cat active" data-cat="material">材质篇</button>
-        <button class="faq-cat" data-cat="care">盘玩养护篇</button>
-        <button class="faq-cat" data-cat="aroma">气味篇</button>
-      </div>
-
-      <div class="faq-list" id="faqList">
-
-        <!-- 材质篇 -->
-        <div class="faq-item" data-cat="material">
-          <button class="faq-q">
-            <span>愈创木属于濒危木材，本店手串是否为正品来源？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>愈创木确实在本世纪初被列入 CITES 附录 II 进行贸易管制。本店所用原材，均为上世纪合规流入国内的陈化老料——新鲜砍伐的原木含水率极高，无法直接制作手串，需长期陈化待水分蒸发、木性稳定后方可加工。老料不在现行管制范围之内，来源合规，原料保真。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="material">
-          <button class="faq-q">
-            <span>愈创木硬度比小叶紫檀还高？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>是的。以莫氏硬度单位对比：小叶紫檀约 3600 单位，而愈创木可达 4500 单位以上，硬度远超。但二者属于完全不同的材质体系，如同橘子与柠檬同属柑橘类却各有风味，不能简单类比优劣，各有各的玩法与美感。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="material">
-          <button class="faq-q">
-            <span>愈创木是绿檀吗？如何区分？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>并非同一种木材。绿檀学名萨米维腊木，主产阿根廷，有标志性的羽毛状纹理，且表面会出现吐丝结晶现象；愈创木则纹理细密，无吐丝。早年市场因信息不透明出现了大量以颜色命名的"X 檀"——绿檀、黑檀、黄檀均为商业俗称，并非正统檀木，需加以分辨。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="material">
-          <button class="faq-q">
-            <span>愈创木容易开裂吗？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>天然木材皆有开裂可能，如同实木家具一般，并非绝对会裂，也不代表品质有问题。本店在选料与加工环节层层筛选，正常盘玩状态下不易开裂。易诱发开裂的情况：存放环境极度干燥（空气湿度低于 20%）、经历极端冷热交替、意外泡水后未及时处理。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="aroma">
-          <button class="faq-q">
-            <span>刚到手感觉香味很淡，是品质问题吗？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>完全正常，请放心。愈创木本身的特性就是越盘越香——香味的释放依赖于氧化与油脂析出的过程。成品串制作完成后，会立刻做物理防氧化封存处理，目的是让氧化、变色、生香的过程从玩家上手后正式开始。珠子颜色加深，正是油脂析出、香气释放的信号。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="aroma">
-          <button class="faq-q">
-            <span>香味会随时间消散吗？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>不会。本店选用的香水料，原为提取香水精油的原料，油脂含量极为充沛。结合五年门店实测，正常盘玩状态下香气可长期留存，且随盘玩时间的推移，香气层次反而会更加丰富醇厚。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="care">
-          <button class="faq-q">
-            <span>标准盘玩方法是什么？新手如何上手？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>收到手串后可直接净手盘玩，随串附赠手套用于定期清洁养护即可。几点小建议：新串收到后先在室内静置 30 分钟再拆封使用；日常直接净手盘玩为主，每周用纯棉或麂皮手套清理 2-3 次，每次约 10 分钟（手套主要作用为除尘清洁）；不佩戴时放入密封罐妥善存放。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="care">
-          <button class="faq-q">
-            <span>手串不小心碰水或泡水怎么办？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>日常洗手、洗脸等短暂沾水：及时擦干水分即可，无需过于担心。若整串泡水（如掉入洗衣机、浸泡在泳池或温泉中）：可寄回门店免费进行重新打磨修复，恢复如新，享受终身免费保养服务。</p>
-          </div>
-        </div>
-
-        <div class="faq-item" data-cat="care">
-          <button class="faq-q">
-            <span>长期未佩戴，手串表面出现黏腻感怎么处理？</span>
-            <span class="faq-arrow">▼</span>
-          </button>
-          <div class="faq-a">
-            <p>这是愈创木接触空气自然反油的正常现象，雨季空气潮湿时尤为明显。长期放置后，析出的油脂混合空气中的微尘，便会产生黏腻感。处理方式极为简单：直接上手盘玩数分钟，掌心温度可软化表层油脂，逐步形成温润包浆即可，无需任何额外处理。</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== CARE GUIDE 养护手册 ========== -->
-<section class="section section-dark care-section">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">养护手册</span>
-      <h2 class="section-title">如何珍护这一串时光</h2>
-    </div>
-    <div class="care-grid">
-      <div class="care-item care-do">
-        <div class="care-icon">✓</div>
-        <h4>应该做的</h4>
-        <ul>
-          <li>净手后直接上手盘玩</li>
-          <li>每周用纯棉手套清洁 2-3 次</li>
-          <li>不佩戴时放入密封罐存放</li>
-          <li>沾水后立即擦干</li>
-          <li>室温环境下正常保存</li>
-        </ul>
-      </div>
-      <div class="care-item care-dont">
-        <div class="care-icon">✗</div>
-        <h4>应当避免的</h4>
-        <ul>
-          <li>避免长期置于极度干燥环境</li>
-          <li>避免急冷急热的极端温差</li>
-          <li>避免沾水后不及时擦干</li>
-          <li>避免接触腐蚀性液体</li>
-          <li>避免与硬物磕碰摩擦</li>
-        </ul>
-      </div>
-      <div class="care-item care-service">
-        <div class="care-icon">♾</div>
-        <h4>终身保障</h4>
-        <ul>
-          <li>泡水后免费重新打磨修复</li>
-          <li>开裂问题免费评估处理</li>
-          <li>随时联系客服获取养护建议</li>
-          <li>老浆翻新服务</li>
-          <li>配饰搭配顾问</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== MESSAGE BOARD 留言区 ========== -->
-<section class="section" id="message">
-  <div class="container">
-    <div class="section-header">
-      <span class="section-tag">藏风茶座</span>
-      <h2 class="section-title">留言 · 交流</h2>
-      <p class="section-sub">分享你与这串珠子之间的故事，或者提出任何疑问</p>
-    </div>
-
-    <div class="message-layout">
-      <!-- 留言表单 -->
-      <div class="msg-form-wrap">
-        <form class="msg-form" id="msgForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>称呼</label>
-              <input type="text" id="msgName" placeholder="如何称呼你" maxlength="20" />
-            </div>
-            <div class="form-group">
-              <label>联系方式（可选）</label>
-              <input type="text" id="msgContact" placeholder="微信 / 手机 / 邮箱" maxlength="50" />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>话题标签</label>
-            <div class="tag-select">
-              <button type="button" class="tag-btn active" data-tag="experience">盘玩心得</button>
-              <button type="button" class="tag-btn" data-tag="question">购前咨询</button>
-              <button type="button" class="tag-btn" data-tag="care">养护求助</button>
-              <button type="button" class="tag-btn" data-tag="show">晒单分享</button>
-              <button type="button" class="tag-btn" data-tag="other">其他</button>
-            </div>
-          </div>
-          <div class="form-group">
-            <label>留言内容</label>
-            <textarea id="msgContent" placeholder="在这里写下你的想法、问题或者与这串手串的故事……" maxlength="500" rows="5"></textarea>
-            <span class="char-count" id="charCount">0 / 500</span>
-          </div>
-          <button type="submit" class="submit-btn">
-            <span>✦ 发布留言</span>
-          </button>
-        </form>
-      </div>
-
-      <!-- 留言展示 -->
-      <div class="msg-board" id="msgBoard">
-        <div class="board-header">
-          <h3>近期留言</h3>
-          <span id="msgCount" class="msg-total">共 3 条</span>
-        </div>
-        <div class="msg-list" id="msgList">
-          <!-- 预置留言 -->
-          <div class="msg-card">
-            <div class="msg-meta">
-              <span class="msg-avatar">雪</span>
-              <span class="msg-name">雪山旅者</span>
-              <span class="msg-tag-label">盘玩心得</span>
-              <span class="msg-time">2026-06-18</span>
-            </div>
-            <p class="msg-text">入手两个月了，香气比刚到手时浓郁了不少，颜色也开始往深里走。昨天一个朋友闻了闻问我是不是涂了什么护手霜，哈哈，天然的木头香真的很迷人。</p>
-            <div class="msg-likes">
-              <button class="like-btn" onclick="likeMsg(this)">♡ 12</button>
-            </div>
-          </div>
-
-          <div class="msg-card">
-            <div class="msg-meta">
-              <span class="msg-avatar">木</span>
-              <span class="msg-name">木石同道</span>
-              <span class="msg-tag-label">养护求助</span>
-              <span class="msg-time">2026-06-15</span>
-            </div>
-            <p class="msg-text">南方梅雨季，手串摸起来确实有点黏，按照说明上手盘了十分钟之后好多了，果然越盘越顺手。这种材质的脾气真是需要慢慢摸索。</p>
-            <div class="msg-likes">
-              <button class="like-btn" onclick="likeMsg(this)">♡ 8</button>
-            </div>
-          </div>
-
-          <div class="msg-card">
-            <div class="msg-meta">
-              <span class="msg-avatar">静</span>
-              <span class="msg-name">静观自在</span>
-              <span class="msg-tag-label">晒单分享</span>
-              <span class="msg-time">2026-06-10</span>
-            </div>
-            <p class="msg-text">买了作为禅修时的念珠，每天早课时盘上半小时，气息很沉稳，奶油可可香特别明显，配合冥想效果极好。谢谢燃造物的用心选料。</p>
-            <div class="msg-likes">
-              <button class="like-btn" onclick="likeMsg(this)">♡ 21</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="footer">
-  <div class="footer-mandala">
-    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" opacity="0.15">
-      <circle cx="100" cy="100" r="90" fill="none" stroke="#c8a96e" stroke-width="0.8"/>
-      <circle cx="100" cy="100" r="70" fill="none" stroke="#c8a96e" stroke-width="0.8"/>
-      <circle cx="100" cy="100" r="50" fill="none" stroke="#c8a96e" stroke-width="1"/>
-      <circle cx="100" cy="100" r="30" fill="none" stroke="#c8a96e" stroke-width="1"/>
-      <circle cx="100" cy="100" r="12" fill="#c8a96e" opacity="0.4"/>
-      <g stroke="#c8a96e" stroke-width="0.6" opacity="0.6">
-        <line x1="100" y1="10" x2="100" y2="190"/>
-        <line x1="10" y1="100" x2="190" y2="100"/>
-        <line x1="36" y1="36" x2="164" y2="164"/>
-        <line x1="164" y1="36" x2="36" y2="164"/>
-        <line x1="100" y1="10" x2="164" y2="164"/>
-        <line x1="10" y1="100" x2="164" y2="36"/>
-      </g>
-      <text x="100" y="107" text-anchor="middle" font-size="20" fill="#c8a96e" opacity="0.8" font-family="serif">ॐ</text>
-    </svg>
-  </div>
-  <div class="footer-content">
-    <div class="footer-brand">
-      <span class="footer-logo">燃造物</span>
-      <p>以木为媒，以时间为匠<br/>生命之树，静待盘出你的故事</p>
-    </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">燃造物 · GUAIACUM CRAFT</div>
+    <p class="footer-tagline">
+      <span data-lang="zh">愈创木 · 手艺 · 传承</span>
+      <span data-lang="en">Wood · Craft · Heritage</span>
+      <span data-lang="ja">木 · 工芸 · 伝承</span>
+    </p>
     <div class="footer-links">
-      <h4>快速导航</h4>
-      <a href="#about">何为愈创木</a>
-      <a href="#science">木性科普</a>
-      <a href="#compare">对比鉴别</a>
-      <a href="#gallery">珠串展示</a>
-      <a href="#faq">常见问答</a>
-      <a href="#message">留言交流</a>
+      <a href="#knowledge">
+        <span data-lang="zh">科普</span>
+        <span data-lang="en">Knowledge</span>
+        <span data-lang="ja">知識</span>
+      </a>
+      <a href="#trending">
+        <span data-lang="zh">流行话题</span>
+        <span data-lang="en">Trending</span>
+        <span data-lang="ja">トレンド</span>
+      </a>
+      <a href="#healing">
+        <span data-lang="zh">疗愈</span>
+        <span data-lang="en">Healing</span>
+        <span data-lang="ja">癒し</span>
+      </a>
+      <a href="#gallery">
+        <span data-lang="zh">作品展</span>
+        <span data-lang="en">Gallery</span>
+        <span data-lang="ja">展示</span>
+      </a>
+      <a href="https://guaiacum-craft.com" target="_blank">guaiacum-craft.com</a>
     </div>
-    <div class="footer-info">
-      <h4>联系我们</h4>
-      <p>有任何关于选料、盘玩、保养的问题，欢迎随时联系客服，我们承诺终身免费保养服务。</p>
-      <div class="footer-badges">
-        <span>✦ 陈化老料</span>
-        <span>✦ 原料保真</span>
-        <span>✦ 终身养护</span>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2026 燃造物 · 愈创木手串 · 生命之树，千年等待</p>
-    <p class="footer-tibetan">༄༅། །བདེ་གཤེགས་ཆོས་ཀི་སྐུ་མཆོག་སྲིད།</p>
-  </div>
-</footer>
+    <p class="footer-copy">© 2026 燃造物 GUAIACUM CRAFT · All rights reserved · <span data-lang="zh">愈创木文创</span><span data-lang="en">Guaiacum Cultural Craft</span><span data-lang="ja">愈創木文化工芸</span></p>
+  </footer>
 
-<script src="app.js"></script>
+  <script>
+    // Language Switcher
+    function setLang(lang) {
+      document.body.className = 'lang-' + lang;
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+      // Set HTML lang attribute
+      var langMap = { zh: 'zh-Hans', en: 'en', ja: 'ja' };
+      document.documentElement.lang = langMap[lang] || lang;
+      // Save preference
+      try { localStorage.setItem('ranzo-lang', lang); } catch(e) {}
+    }
+
+    // Restore last language
+    (function() {
+      var saved;
+      try { saved = localStorage.getItem('ranzo-lang'); } catch(e) {}
+      if (saved && ['zh','en','ja'].includes(saved)) {
+        document.body.className = 'lang-' + saved;
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+          btn.classList.remove('active');
+          if (btn.textContent.trim() === (saved === 'zh' ? '中文' : saved === 'en' ? 'EN' : '日本語')) {
+            btn.classList.add('active');
+          }
+        });
+      }
+    })();
+
+    // Guestbook
+    function submitComment() {
+      var name = document.getElementById('gb-name').value.trim() || 'Anonymous';
+      var from = document.getElementById('gb-from').value.trim();
+      var msg = document.getElementById('gb-msg').value.trim();
+      if (!msg) {
+        alert('Please enter a message / 请输入留言 / メッセージを入力してください');
+        return;
+      }
+      var now = new Date();
+      var dateStr = now.getFullYear() + '.' +
+        String(now.getMonth()+1).padStart(2,'0') + '.' +
+        String(now.getDate()).padStart(2,'0');
+      var item = document.createElement('div');
+      item.className = 'comment-item';
+      item.innerHTML =
+        '<div class="comment-meta">' +
+        '<span class="comment-name">' + escapeHtml(name) + (from ? ' · ' + escapeHtml(from) : '') + '</span>' +
+        '<span>' + dateStr + '</span>' +
+        '</div>' +
+        '<div class="comment-text">' + escapeHtml(msg) + '</div>';
+      var list = document.getElementById('comment-list');
+      list.insertBefore(item, list.firstChild);
+      document.getElementById('gb-name').value = '';
+      document.getElementById('gb-from').value = '';
+      document.getElementById('gb-msg').value = '';
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    // Smooth nav scroll offset for fixed bars
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          var offset = 110;
+          var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top: top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
